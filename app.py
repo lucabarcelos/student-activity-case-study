@@ -37,6 +37,9 @@ Returns list of activitiy ids not enrolled due to conflict
 def enroll_activity():
     request_data = request.get_json()
 
+    if "student_id" not in request_data.keys() or "password" not in request_data.keys() or "activity_ids" not in request_data.keys():
+        return 'Request must contain fields "student_id", "password", "activity_ids"', 400
+
     if not student_service.authenticate(request_data["student_id"], request_data["password"]):
         return "Wrong password or ID", 401
 
@@ -53,6 +56,9 @@ Returns 201 if user was successfully created, 500 if user already exists
 def create_student():
     request_data = request.get_json()
 
+    if "student_id" not in request_data.keys() or "password" not in request_data.keys():
+        return 'Request must contain fields "student_id", "password"', 400
+
     return student_service.create_student(request_data["student_id"], request_data["password"])
 
 '''
@@ -65,6 +71,9 @@ Returns list of activities if credentials match, 401 otherwise
 @app.route('/list_student_activities', methods=['GET'])
 def list_student_activities():
     request_data = request.get_json()
+
+    if "student_id" not in request_data.keys() or "password" not in request_data.keys():
+        return 'Request must contain fields "student_id", "password"', 400
 
     if not student_service.authenticate(request_data["student_id"], request_data["password"]):
         return "Wrong password or ID", 401
