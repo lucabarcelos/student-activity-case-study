@@ -3,8 +3,8 @@
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/student-activity-api.git
-cd student-activity-api
+git clone https://github.com/lucabarcelos/sudent-activity-case-study.git
+cd sudent-activity-case-study
 ```
 
 2. Install dependencies:
